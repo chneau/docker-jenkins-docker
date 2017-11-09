@@ -1,7 +1,6 @@
-FROM jenkins/jenkins:lts-alpine
+FROM jenkins/jenkins:lts
 
 USER root
 
-RUN apk --no-cache add docker
-
-USER jenkins
+RUN curl -sSL get.docker.com | sh
+RUN usermod -aG docker jenkins
