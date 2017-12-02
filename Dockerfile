@@ -1,6 +1,9 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:alpine
 
 USER root
 
-RUN curl -sSL get.docker.com | sh
-RUN usermod -aG docker jenkins
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main docker
+
+RUN /usr/sbin/addgroup jenkins docker
+
+USER jenkins
